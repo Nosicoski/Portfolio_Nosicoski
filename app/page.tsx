@@ -34,16 +34,16 @@ export default function Home() {
     {
       id: 1,
       title: "PROFIT",
-      description: "Sistema de gestión de stock, clientes, ventas y proveedores para negocios.",
+      description: "Inventory, customer, sales, and supplier management system for businesses.",
       image: "/PROFIT.png",
-      tags: ["Java", "PostgreSQL", "C#", ".NET"],
+      tags: ["Java", "Swing","PostgreSQL", "C#", ".NET"],
       demoUrl: "#",
       codeUrl: "#",
     },
     {
       id: 2,
       title: "NOMADNOOK",
-      description: "Sistema de gestión de cabañas, con gestión de clientes, cabañas, usuarios, favoritos, etc.",
+      description: "Cabin management system, with management of clients, cabins, users, favorites, etc.",
       image: "/NOMADNOOK.png",
       tags: ["Java", "API REST", "PostgreSQL", "AWS", "Postman", "React", "Tailwind CSS"],
       demoUrl: "#",
@@ -52,7 +52,7 @@ export default function Home() {
     {
       id: 3,
       title: "CLÍNICA BOCASANA",
-      description: "Sistema de gestión de clínicas, odontólogos y pacientes.",
+      description: "Clinic, dentist, and patient management system.",
       image: "/PROYECTO2.jpg",
       tags: ["Java", "API REST", "H2", "Postman"],
       demoUrl: "#",
@@ -64,9 +64,9 @@ export default function Home() {
     {
       id: 4,
       title: "TASK'S",
-      description: "Sistema de gestión de tareas.",
-      image: "/placeholder.svg?height=400&width=600",
-      tags: ["Java", "API REST", "PostgreSQL"],
+      description: "Task management system.",
+      image: "/PROYECTO 6.png",
+      tags: ["Java", "API REST", "PostgreSQL","H2", "Postman"],
       demoUrl: "#",
       codeUrl: "#",
     },
@@ -75,27 +75,27 @@ export default function Home() {
   const initialFrontendProjects = [
     {
       id: 5,
-      title: "E-commerce Platform",
+      title: "E-COMMERCE PLATFORM",
       description: "A full-featured online store with product catalog, cart, and checkout functionality.",
-      image: "/placeholder.svg?height=400&width=600",
+      image: "/PROYECTO 3.1.png",
       tags: ["React", "Next.js", "Tailwind CSS"],
       demoUrl: "#",
       codeUrl: "#",
     },
     {
       id: 6,
-      title: "Task Management Dashboard",
+      title: "ASTRO BLOG",
       description: "A productivity application for managing tasks, projects, and deadlines.",
-      image: "/placeholder.svg?height=400&width=600",
+      image: "/PROYECTO 4.png",
       tags: ["TypeScript", "React", "Redux"],
       demoUrl: "#",
       codeUrl: "#",
     },
     {
       id: 7,
-      title: "Portfolio Website",
+      title: "FINGER COUNTER",
       description: "A responsive portfolio website to showcase projects and skills.",
-      image: "/placeholder.svg?height=400&width=600",
+      image: "/PROYECTO 1.png",
       tags: ["Next.js", "Tailwind CSS", "Framer Motion"],
       demoUrl: "#",
       codeUrl: "#",
@@ -105,9 +105,9 @@ export default function Home() {
   const additionalFrontendProjects = [
     {
       id: 8,
-      title: "Weather Dashboard",
-      description: "Real-time weather information with forecast and location search.",
-      image: "/placeholder.svg?height=400&width=600",
+      title: "FACE DETECTOR",
+      description: "A web application that detects faces in images using AI.",
+      image: "/PROYECTO 3.png",
       tags: ["React", "API Integration", "CSS"],
       demoUrl: "#",
       codeUrl: "#",
@@ -296,10 +296,15 @@ export default function Home() {
                         </ul>
                       </div>
                       <div className="mt-4 flex flex-wrap gap-2">
-                        <Badge variant="secondary">Node.js</Badge>
-                        <Badge variant="secondary">Express</Badge>
-                        <Badge variant="secondary">MongoDB</Badge>
+                        <Badge variant="secondary">AWS</Badge>
+                        <Badge variant="secondary">PostgreeSQL</Badge>
                         <Badge variant="secondary">API Design</Badge>
+                        <Badge variant="secondary">Springboot</Badge>
+                        <Badge variant="secondary">Java</Badge>
+                        <Badge variant="secondary">React</Badge>
+                        <Badge variant="secondary">Postman</Badge>
+                        
+                       
                       </div>
                     </CardContent>
                   </Card>
@@ -315,10 +320,10 @@ export default function Home() {
                     <CardContent className="p-6">
                       <div className="flex flex-col gap-1">
                         <h3 className="font-bold text-xl">SOFTWARE DEVELOPER</h3>
-                        <p className="text-muted-foreground font-medium">Company Name</p>
+                        <p className="text-muted-foreground font-medium">ARGENSOFT</p>
                         <div className="flex items-center gap-2 text-sm text-muted-foreground">
                           <Calendar className="h-4 w-4" />
-                          <span>May 2024 - Present</span>
+                          <span>May 2024 - Present · 1 Year</span>
                         </div>
                       </div>
                       <div className="mt-4 space-y-2">
@@ -332,10 +337,12 @@ export default function Home() {
                         </ul>
                       </div>
                       <div className="mt-4 flex flex-wrap gap-2">
-                        <Badge variant="secondary">JavaScript</Badge>
-                        <Badge variant="secondary">React</Badge>
-                        <Badge variant="secondary">Node.js</Badge>
+                        <Badge variant="secondary">Java</Badge>
+                        <Badge variant="secondary">C#</Badge>
+                        <Badge variant="secondary">.NET</Badge>
                         <Badge variant="secondary">Git</Badge>
+                        <Badge variant="secondary">Github</Badge>
+                        <Badge variant="secondary">QA</Badge>
                       </div>
                     </CardContent>
                   </Card>
@@ -407,7 +414,7 @@ export default function Home() {
 
             {/* Frontend Projects */}
             <div className="space-y-8">
-              <h3 className="text-2xl font-bold tracking-tighter text-center">Frontend Projects</h3>
+              <h3 className="text-2xl font-bold tracking-tighter text-center">IA and Frontend Projects</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {displayedFrontendProjects.map((project) => (
                   <Card key={project.id} className="overflow-hidden group">
