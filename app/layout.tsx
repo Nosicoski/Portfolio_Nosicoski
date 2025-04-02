@@ -8,7 +8,9 @@ const inter = Inter({ subsets: ["latin"] })
 export const metadata = {
   title: "Developer Portfolio",
   description: "A modern portfolio website for developers",
-    generator: 'v0.dev'
+  icons: {
+    icon: "/Logo page.ico",
+  },
 }
 
 export default function RootLayout({
@@ -22,13 +24,8 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           {children}
         </ThemeProvider>
-        
       </body>
-      
     </html>
   )
 }
 
-
-
-import './globals.css'

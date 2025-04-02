@@ -20,6 +20,8 @@ import {
   TrelloIcon,
   Phone,
   GitBranch,
+  X,
+  FileText,
 } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
@@ -29,6 +31,9 @@ import { Badge } from "@/components/ui/badge"
 export default function Home() {
   const [showAllBackendProjects, setShowAllBackendProjects] = useState(false)
   const [showAllFrontendProjects, setShowAllFrontendProjects] = useState(false)
+  const [modalImage, setModalImage] = useState<string | null>(null)
+  const [certificateImage, setCertificateImage] = useState<string | null>(null)
+  const [activeButton, setActiveButton] = useState<string | null>(null)
 
   const initialBackendProjects = [
     {
@@ -36,9 +41,9 @@ export default function Home() {
       title: "PROFIT",
       description: "Inventory, customer, sales, and supplier management system for businesses.",
       image: "/PROFIT.png",
-      tags: ["Java", "Swing","PostgreSQL", "C#", ".NET"],
+      tags: ["Java", "PostgreSQL", "C#", ".NET","SQL Server", "Postman"],
       demoUrl: "#",
-      codeUrl: "#",
+      codeUrl: "https://github.com/Nosicoski",
     },
     {
       id: 2,
@@ -47,7 +52,7 @@ export default function Home() {
       image: "/NOMADNOOK.png",
       tags: ["Java", "API REST", "PostgreSQL", "AWS", "Postman", "React", "Tailwind CSS"],
       demoUrl: "#",
-      codeUrl: "#",
+      codeUrl: "https://github.com/Nosicoski",
     },
     {
       id: 3,
@@ -56,7 +61,7 @@ export default function Home() {
       image: "/PROYECTO2.jpg",
       tags: ["Java", "API REST", "H2", "Postman"],
       demoUrl: "#",
-      codeUrl: "#",
+      codeUrl: "https://github.com/Nosicoski",
     },
   ]
 
@@ -66,9 +71,9 @@ export default function Home() {
       title: "TASK'S",
       description: "Task management system.",
       image: "/PROYECTO 6.png",
-      tags: ["Java", "API REST", "PostgreSQL","H2", "Postman"],
+      tags: ["Java", "API REST", "PostgreSQL"],
       demoUrl: "#",
-      codeUrl: "#",
+      codeUrl: "https://github.com/Nosicoski",
     },
   ]
 
@@ -80,7 +85,7 @@ export default function Home() {
       image: "/PROYECTO 3.1.png",
       tags: ["React", "Next.js", "Tailwind CSS"],
       demoUrl: "#",
-      codeUrl: "#",
+      codeUrl: "https://github.com/Nosicoski",
     },
     {
       id: 6,
@@ -89,7 +94,7 @@ export default function Home() {
       image: "/PROYECTO 4.png",
       tags: ["TypeScript", "React", "Redux"],
       demoUrl: "#",
-      codeUrl: "#",
+      codeUrl: "https://github.com/Nosicoski",
     },
     {
       id: 7,
@@ -98,7 +103,7 @@ export default function Home() {
       image: "/PROYECTO 1.png",
       tags: ["Next.js", "Tailwind CSS", "Framer Motion"],
       demoUrl: "#",
-      codeUrl: "#",
+      codeUrl: "https://github.com/Nosicoski",
     },
   ]
 
@@ -110,9 +115,15 @@ export default function Home() {
       image: "/PROYECTO 3.png",
       tags: ["React", "API Integration", "CSS"],
       demoUrl: "#",
-      codeUrl: "#",
+      codeUrl: "https://github.com/Nosicoski",
     },
   ]
+
+  const certificates = {
+    "digital-house": "/placeholder.svg?height=800&width=600&text=Digital+House+Certificate",
+    "java-developer": "/Certificado java.png",
+    cybersecurity: "/Certificado Ciberseguridad.png",
+  }
 
   const displayedBackendProjects = showAllBackendProjects
     ? [...initialBackendProjects, ...additionalBackendProjects]
@@ -125,7 +136,7 @@ export default function Home() {
   const handleDownloadCV = () => {
     // In a real implementation, this would be a link to your actual CV file
     const link = document.createElement("a")
-    link.href = "/JuanManuel_Nosicoski_Resume.pdf" // This would be your actual CV file path
+   link.href = "/JuanManuel_Nosicoski_Resume.pdf" // This would be your actual CV file path
     link.download = "Nosicoski Juan Manuel CV.pdf"
     document.body.appendChild(link)
     link.click()
@@ -139,11 +150,32 @@ export default function Home() {
     }
   }
 
+  const openImageModal = (imageUrl: string) => {
+    setModalImage(imageUrl)
+  }
+
+  const closeImageModal = () => {
+    setModalImage(null)
+  }
+
+  const viewCertificate = (certificateId: string) => {
+    setCertificateImage(certificates[certificateId as keyof typeof certificates])
+    setActiveButton(certificateId)
+
+    // Reset the active button state after animation completes
+    setTimeout(() => {
+      setActiveButton(null)
+    }, 500)
+  }
+
+  const closeCertificateModal = () => {
+    setCertificateImage(null)
+  }
+
   return (
     <div className="flex flex-col min-h-screen relative">
       {/* Social Media Sidebar */}
-      <div className="hidden fixed md:flex flex-col gap-4 left-6 top-1/2 -translate-y-1/2 z-50
-">
+      <div className="hidden md:flex flex-col gap-4 absolute left-6 top-1/2 -translate-y-1/2 z-50">
         <Link
           href="https://github.com/Nosicoski"
           target="_blank"
@@ -199,6 +231,12 @@ export default function Home() {
               Skills
             </button>
             <button
+              onClick={() => scrollToSection("education")}
+              className="text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Education
+            </button>
+            <button
               onClick={() => scrollToSection("contact")}
               className="text-muted-foreground hover:text-foreground transition-colors"
             >
@@ -242,14 +280,9 @@ export default function Home() {
             <div className="space-y-4">
               <h2 className="text-3xl font-bold tracking-tighter">About Me</h2>
               <p className="text-muted-foreground">
-                I'm a passionate full-stack developer with expertise in building modern web applications. With a strong
-                foundation in both front-end and back-end technologies, I create seamless digital experiences that solve
-                real-world problems.
-              </p>
+              I'm a passionate full-stack developer specializing in backend development. While I have experience in both front-end and back-end technologies, my true expertise lies in building robust, scalable, and efficient backend systems that power modern web applications.              </p>
               <p className="text-muted-foreground">
-                My journey in web development started 5 years ago, and since then, I've worked on various projects
-                ranging from small business websites to complex enterprise applications. I'm constantly learning and
-                adapting to new technologies to stay at the forefront of web development.
+              My journey in web development started 3 years ago, and since then, I've worked on various projects ranging from small business websites to complex enterprise applications. I'm constantly learning and adapting to new technologies to stay at the forefront of backend development.
               </p>
             </div>
             <div className="w-3/4 mx-auto aspect-square bg-muted rounded-lg overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-xl">
@@ -296,15 +329,10 @@ export default function Home() {
                         </ul>
                       </div>
                       <div className="mt-4 flex flex-wrap gap-2">
-                        <Badge variant="secondary">AWS</Badge>
-                        <Badge variant="secondary">PostgreeSQL</Badge>
+                        <Badge variant="secondary">Node.js</Badge>
+                        <Badge variant="secondary">Express</Badge>
+                        <Badge variant="secondary">MongoDB</Badge>
                         <Badge variant="secondary">API Design</Badge>
-                        <Badge variant="secondary">Springboot</Badge>
-                        <Badge variant="secondary">Java</Badge>
-                        <Badge variant="secondary">React</Badge>
-                        <Badge variant="secondary">Postman</Badge>
-                        
-                       
                       </div>
                     </CardContent>
                   </Card>
@@ -320,10 +348,10 @@ export default function Home() {
                     <CardContent className="p-6">
                       <div className="flex flex-col gap-1">
                         <h3 className="font-bold text-xl">SOFTWARE DEVELOPER</h3>
-                        <p className="text-muted-foreground font-medium">ARGENSOFT</p>
+                        <p className="text-muted-foreground font-medium">Company Name</p>
                         <div className="flex items-center gap-2 text-sm text-muted-foreground">
                           <Calendar className="h-4 w-4" />
-                          <span>May 2024 - Present · 1 Year</span>
+                          <span>May 2024 - Present</span>
                         </div>
                       </div>
                       <div className="mt-4 space-y-2">
@@ -337,12 +365,10 @@ export default function Home() {
                         </ul>
                       </div>
                       <div className="mt-4 flex flex-wrap gap-2">
-                        <Badge variant="secondary">Java</Badge>
-                        <Badge variant="secondary">C#</Badge>
-                        <Badge variant="secondary">.NET</Badge>
+                        <Badge variant="secondary">JavaScript</Badge>
+                        <Badge variant="secondary">React</Badge>
+                        <Badge variant="secondary">Node.js</Badge>
                         <Badge variant="secondary">Git</Badge>
-                        <Badge variant="secondary">Github</Badge>
-                        <Badge variant="secondary">QA</Badge>
                       </div>
                     </CardContent>
                   </Card>
@@ -368,7 +394,10 @@ export default function Home() {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {displayedBackendProjects.map((project) => (
                   <Card key={project.id} className="overflow-hidden group">
-                    <div className="aspect-video overflow-hidden">
+                    <div
+                      className="aspect-video overflow-hidden cursor-pointer"
+                      onClick={() => openImageModal(project.image || "/placeholder.svg")}
+                    >
                       <img
                         src={project.image || "/placeholder.svg"}
                         alt={`Project ${project.id}`}
@@ -388,9 +417,7 @@ export default function Home() {
                         ))}
                       </div>
                       <div className="flex gap-4">
-                        <Button variant="outline" size="sm" asChild>
-                          <Link href={project.demoUrl}>View Demo</Link>
-                        </Button>
+                        
                         <Button variant="outline" size="sm" asChild>
                           <Link href={project.codeUrl}>
                             <Github className="mr-2 h-4 w-4" />
@@ -414,11 +441,14 @@ export default function Home() {
 
             {/* Frontend Projects */}
             <div className="space-y-8">
-              <h3 className="text-2xl font-bold tracking-tighter text-center">IA and Frontend Projects</h3>
+              <h3 className="text-2xl font-bold tracking-tighter text-center">Frontend Projects</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {displayedFrontendProjects.map((project) => (
                   <Card key={project.id} className="overflow-hidden group">
-                    <div className="aspect-video overflow-hidden">
+                    <div
+                      className="aspect-video overflow-hidden cursor-pointer"
+                      onClick={() => openImageModal(project.image || "/placeholder.svg")}
+                    >
                       <img
                         src={project.image || "/placeholder.svg"}
                         alt={`Project ${project.id}`}
@@ -438,9 +468,7 @@ export default function Home() {
                         ))}
                       </div>
                       <div className="flex gap-4">
-                        <Button variant="outline" size="sm" asChild>
-                          <Link href={project.demoUrl}>View Demo</Link>
-                        </Button>
+                       
                         <Button variant="outline" size="sm" asChild>
                           <Link href={project.codeUrl}>
                             <Github className="mr-2 h-4 w-4" />
@@ -506,7 +534,9 @@ export default function Home() {
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                   {[
                     { name: "JavaScript", icon: <Code className="w-6 h-6 text-yellow-500" /> },
-                    { name: "TypeScript", icon: <Code className="w-6 h-6 text-blue-500" /> },
+                  
+                    { name: "HTML", icon: <Code className="w-6 h-6 text-orange-500" /> },
+                    { name: "CSS", icon: <Code className="w-6 h-6 text-blue-400" /> },
                     { name: "React", icon: <Code className="w-6 h-6 text-cyan-500" /> },
                     { name: "Next.js", icon: <Code className="w-6 h-6 text-black dark:text-white" /> },
                     { name: "Tailwind CSS", icon: <Code className="w-6 h-6 text-cyan-400" /> },
@@ -565,6 +595,105 @@ export default function Home() {
                   ))}
                 </div>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Education Section */}
+        <section id="education" className="container py-24 md:py-32">
+          <div className="space-y-12">
+            <div className="text-center space-y-4">
+              <h2 className="text-3xl font-bold tracking-tighter">Education</h2>
+              <p className="text-muted-foreground md:w-2/3 mx-auto">
+                My academic background and professional certifications.
+              </p>
+            </div>
+
+            <div className="max-w-3xl mx-auto space-y-6">
+              <Card className="overflow-hidden">
+                <CardContent className="p-6">
+                  <div className="flex flex-col md:flex-row justify-between gap-4">
+                    <div className="space-y-2">
+                      <h3 className="text-xl font-bold">Certified Tech Developer</h3>
+                      <p className="text-muted-foreground">Digital House</p>
+                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                        <Calendar className="h-4 w-4" />
+                        <span>July 2022 - April 2024</span>
+                      </div>
+                      <p className="text-muted-foreground mt-2">
+                        Comprehensive full-stack development program covering both frontend and backend technologies.
+                      </p>
+                    </div>
+                    <div className="flex items-center">
+                      <Button
+                        variant="outline"
+                        onClick={() => viewCertificate("digital-house")}
+                        className={`relative transition-all ${activeButton === "digital-house" ? "translate-y-1 shadow-inner" : "hover:-translate-y-1 hover:shadow-md"}`}
+                      >
+                        <FileText className="mr-2 h-4 w-4" />
+                        View Certificate
+                      </Button>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="overflow-hidden">
+                <CardContent className="p-6">
+                  <div className="flex flex-col md:flex-row justify-between gap-4">
+                    <div className="space-y-2">
+                      <h3 className="text-xl font-bold">Java Developer</h3>
+                      <p className="text-muted-foreground">Coderhouse</p>
+                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                        <Calendar className="h-4 w-4" />
+                        <span>January 2024 - March 2024</span>
+                      </div>
+                      <p className="text-muted-foreground mt-2">
+                        Advanced Java programming with focus on enterprise application development.
+                      </p>
+                    </div>
+                    <div className="flex items-center">
+                      <Button
+                        variant="outline"
+                        onClick={() => viewCertificate("java-developer")}
+                        className={`relative transition-all ${activeButton === "java-developer" ? "translate-y-1 shadow-inner" : "hover:-translate-y-1 hover:shadow-md"}`}
+                      >
+                        <FileText className="mr-2 h-4 w-4" />
+                        View Certificate
+                      </Button>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="overflow-hidden">
+                <CardContent className="p-6">
+                  <div className="flex flex-col md:flex-row justify-between gap-4">
+                    <div className="space-y-2">
+                      <h3 className="text-xl font-bold">CyberSecurity</h3>
+                      <p className="text-muted-foreground">Coderhouse</p>
+                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                        <Calendar className="h-4 w-4" />
+                        <span>July 2024 - September 2024</span>
+                      </div>
+                      <p className="text-muted-foreground mt-2">
+                        Comprehensive cybersecurity program covering threat detection, prevention, and security best
+                        practices.
+                      </p>
+                    </div>
+                    <div className="flex items-center">
+                      <Button
+                        variant="outline"
+                        onClick={() => viewCertificate("cybersecurity")}
+                        className={`relative transition-all ${activeButton === "cybersecurity" ? "translate-y-1 shadow-inner" : "hover:-translate-y-1 hover:shadow-md"}`}
+                      >
+                        <FileText className="mr-2 h-4 w-4" />
+                        View Certificate
+                      </Button>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </section>
@@ -678,6 +807,55 @@ export default function Home() {
           </div>
         </div>
       </footer>
+
+      {/* Image Modal */}
+      {modalImage && (
+        <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4" onClick={closeImageModal}>
+          <div className="relative max-w-4xl max-h-[90vh] w-full">
+            <button
+              className="absolute -top-10 right-0 text-white hover:text-primary"
+              onClick={(e) => {
+                e.stopPropagation()
+                closeImageModal()
+              }}
+            >
+              <X className="h-8 w-8" />
+            </button>
+            <img
+              src={modalImage || "/placeholder.svg"}
+              alt="Project Preview"
+              className="w-full h-full object-contain"
+              onClick={(e) => e.stopPropagation()}
+            />
+          </div>
+        </div>
+      )}
+
+      {/* Certificate Modal */}
+      {certificateImage && (
+        <div
+          className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
+          onClick={closeCertificateModal}
+        >
+          <div className="relative max-w-4xl max-h-[90vh] w-full">
+            <button
+              className="absolute -top-10 right-0 text-white hover:text-primary"
+              onClick={(e) => {
+                e.stopPropagation()
+                closeCertificateModal()
+              }}
+            >
+              <X className="h-8 w-8" />
+            </button>
+            <img
+              src={certificateImage || "/placeholder.svg"}
+              alt="Certificate"
+              className="w-full h-full object-contain"
+              onClick={(e) => e.stopPropagation()}
+            />
+          </div>
+        </div>
+      )}
     </div>
   )
 }
