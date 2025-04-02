@@ -329,10 +329,15 @@ export default function Home() {
                         </ul>
                       </div>
                       <div className="mt-4 flex flex-wrap gap-2">
-                        <Badge variant="secondary">Node.js</Badge>
-                        <Badge variant="secondary">Express</Badge>
+                        <Badge variant="secondary">Java</Badge>
+                        <Badge variant="secondary">SpringBoot</Badge>
                         <Badge variant="secondary">MongoDB</Badge>
                         <Badge variant="secondary">API Design</Badge>
+                        <Badge variant="secondary">Postman</Badge>
+                        <Badge variant="secondary">Git</Badge>
+                        <Badge variant="secondary">Github</Badge>
+                        <Badge variant="secondary">Discord</Badge>
+
                       </div>
                     </CardContent>
                   </Card>
@@ -348,7 +353,7 @@ export default function Home() {
                     <CardContent className="p-6">
                       <div className="flex flex-col gap-1">
                         <h3 className="font-bold text-xl">SOFTWARE DEVELOPER</h3>
-                        <p className="text-muted-foreground font-medium">Company Name</p>
+                        <p className="text-muted-foreground font-medium">Argensoft</p>
                         <div className="flex items-center gap-2 text-sm text-muted-foreground">
                           <Calendar className="h-4 w-4" />
                           <span>May 2024 - Present</span>
@@ -362,13 +367,22 @@ export default function Home() {
                           <li>Developing and maintaining web applications</li>
                           <li>Collaborating with cross-functional teams</li>
                           <li>Implementing best practices and coding standards</li>
+                          <li>Developing and migrating desktop applications with Java and C#</li>
                         </ul>
                       </div>
                       <div className="mt-4 flex flex-wrap gap-2">
-                        <Badge variant="secondary">JavaScript</Badge>
-                        <Badge variant="secondary">React</Badge>
+                        <Badge variant="secondary">Java</Badge>
+                        <Badge variant="secondary">C#</Badge>
+                        <Badge variant="secondary">SQL/NoSQL</Badge>
                         <Badge variant="secondary">Node.js</Badge>
+                        <Badge variant="secondary">.NET</Badge>
                         <Badge variant="secondary">Git</Badge>
+                        <Badge variant="secondary">Github</Badge>
+                        <Badge variant="secondary">Slack</Badge>
+                        <Badge variant="secondary">ClickUp</Badge>
+                        <Badge variant="secondary">Trello</Badge>
+                        
+
                       </div>
                     </CardContent>
                   </Card>
