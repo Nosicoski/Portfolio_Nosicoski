@@ -171,6 +171,15 @@ export default function Home() {
   const closeCertificateModal = () => {
     setCertificateImage(null)
   }
+  const medals = [
+    {
+      id: 1,
+      title: "MySQL Course", 
+      image: "/Medal1.png",
+      description: "Certification that verifies my completed course in MySQL",
+    }
+    
+  ]
 
   return (
     <div className="flex flex-col min-h-screen relative">
@@ -229,12 +238,13 @@ export default function Home() {
               className="text-muted-foreground hover:text-foreground transition-colors"
             >
               Skills
+              Education
             </button>
             <button
-              onClick={() => scrollToSection("education")}
+              onClick={() => scrollToSection("medals")}
               className="text-muted-foreground hover:text-foreground transition-colors"
             >
-              Education
+              Medals
             </button>
             <button
               onClick={() => scrollToSection("contact")}
@@ -708,6 +718,40 @@ export default function Home() {
                   </div>
                 </CardContent>
               </Card>
+            </div>
+          </div>
+        </section>
+           {/* Medals Section */}
+           <section id="medals" className="bg-muted/50 py-24 md:py-32">
+          <div className="container space-y-12">
+            <div className="text-center space-y-4">
+              <h2 className="text-3xl font-bold tracking-tighter">Medals</h2>
+              <p className="text-muted-foreground md:w-2/3 mx-auto">
+                Recognition and achievements from completed courses and competitions.
+              </p>
+            </div>
+
+            <div className="max-w-5xl mx-auto">
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
+                {medals.map((medal) => (
+                  <div key={medal.id} className="flex flex-col items-center text-center space-y-4">
+                    <div
+                      className="w-24 h-24 rounded-full overflow-hidden cursor-pointer transition-all duration-300 hover:scale-110 hover:shadow-lg"
+                      onClick={() => openImageModal(medal.image)}
+                    >
+                      <img
+                        src={medal.image || "/placeholder.svg"}
+                        alt={medal.title}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div className="space-y-1">
+                      <h3 className="font-bold">{medal.title}</h3>
+                      <p className="text-sm text-muted-foreground">{medal.description}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </section>
