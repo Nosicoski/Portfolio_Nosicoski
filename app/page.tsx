@@ -120,7 +120,7 @@ export default function Home() {
   ]
 
   const certificates = {
-    "digital-house": "/placeholder.svg?height=800&width=600&text=Digital+House+Certificate",
+    "digital-house": "/Juan Manuel Nosicoski DH.jpeg",
     "java-developer": "/Certificado Java.png",
     cybersecurity: "/Certificado Ciberseguridad.png",
   }
